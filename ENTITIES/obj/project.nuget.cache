@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "+gzkCC8fvRIQyHupT2Ull4JGQ+WmOVRHiL63z8OnwctVkug6xpltDVnAWBJW6zleFBB/FScEVzz26rcQeP6NeA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\w.alquraan\\Desktop\\QueryFramework\\ConsoleFramework\\ENTITIES\\ENTITIES.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\w.alquraan\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.2.0\\microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
+    "C:\\Users\\w.alquraan\\.nuget\\packages\\microsoft.extensions.primitives\\2.2.0\\microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "C:\\Users\\w.alquraan\\.nuget\\packages\\system.memory\\4.5.1\\system.memory.4.5.1.nupkg.sha512",
+    "C:\\Users\\w.alquraan\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.1\\system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512"
+  ],
+  "logs": []
+}

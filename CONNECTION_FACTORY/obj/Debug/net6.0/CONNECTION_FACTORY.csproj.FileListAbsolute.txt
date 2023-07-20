@@ -1,0 +1,15 @@
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\bin\Debug\net6.0\CONNECTION_FACTORY.deps.json
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\bin\Debug\net6.0\CONNECTION_FACTORY.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\bin\Debug\net6.0\CONNECTION_FACTORY.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.csproj.AssemblyReference.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.AssemblyInfoInputs.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.AssemblyInfo.cs
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.csproj.CopyComplete
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\refint\CONNECTION_FACTORY.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\CONNECTION_FACTORY.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\obj\Debug\net6.0\ref\CONNECTION_FACTORY.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\bin\Debug\net6.0\COMMON.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\CONNECTION_FACTORY\bin\Debug\net6.0\COMMON.pdb

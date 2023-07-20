@@ -1,0 +1,12 @@
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\bin\Debug\net6.0\BASE.deps.json
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\bin\Debug\net6.0\BASE.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\bin\Debug\net6.0\BASE.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.csproj.AssemblyReference.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.AssemblyInfoInputs.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.AssemblyInfo.cs
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\refint\BASE.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\BASE.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\BASE\obj\Debug\net6.0\ref\BASE.dll

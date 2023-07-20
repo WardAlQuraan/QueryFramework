@@ -1,0 +1,15 @@
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\bin\Debug\net6.0\ENTITIES.deps.json
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\bin\Debug\net6.0\ENTITIES.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\bin\Debug\net6.0\ENTITIES.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.csproj.AssemblyReference.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.AssemblyInfoInputs.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.AssemblyInfo.cs
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.csproj.CoreCompileInputs.cache
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\refint\ENTITIES.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ref\ENTITIES.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\bin\Debug\net6.0\COMMON.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\bin\Debug\net6.0\COMMON.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\ENTITIES\obj\Debug\net6.0\ENTITIES.csproj.CopyComplete
