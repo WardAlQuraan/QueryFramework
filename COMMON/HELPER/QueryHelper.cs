@@ -68,5 +68,13 @@ namespace COMMON.HELPER
 
         }
 
+        public static int GetPageSize(this Dictionary<string , string> keyValues)
+        {
+            var pageSizeKeyValue = keyValues.FirstOrDefault(x => x.Key.Equals("pagesize", StringComparison.OrdinalIgnoreCase));
+            int.TryParse(pageSizeKeyValue.Value, out int pageSize);
+            pageSize = pageSize == 0 ? 10 : pageSize;
+            return pageSize;
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BASES.BASE_REPO;
+using COMMON.PAGED;
 using CONNECTION_FACTORY.DAL_SESSION;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -9,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace BASES.BASE_SERVICE
 {
-    public interface IBaseService<T>
+    public interface IBaseService<T,I>
     {
-        Task<IEnumerable<T>> GetAsync(IQueryCollection keyValuePairs);
+        Task<PagedResult<T>> GetAsync(IQueryCollection keyValuePairs);
         Task<T> GetAsync(object id);
-        Task<object> InsertAsync(T entity);
+        Task<I> InsertAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<object> DeleteByIdAsync(object id);
         Task<int> DeleteByQueryAsync(IQueryCollection keyValuePairs);

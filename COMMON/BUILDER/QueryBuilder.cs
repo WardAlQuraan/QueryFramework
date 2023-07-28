@@ -1,6 +1,7 @@
 ﻿using COMMON.ATTRIBUTES;
 using COMMON.HELPER;
 using COMMON.QUERY_OBJECTS;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -19,21 +20,30 @@ namespace COMMON.BUILDER
     {
         #region Getters
 
-        public static QueryParams ToSelectQueryById<T>(object id)
+        public static QueryParams ToSelectQueryById<T>(object id,int isDeleted = 0)
         {
             var keyProp = ReflectionHelper.GetKeyProperty<T>();
             var p = new ExpandoObject();
             p.TryAdd(keyProp.Name, Convert.ChangeType(id, keyProp.PropertyType));
 
 
-            return p.ToSelectQueryByObject<T>(1,1);
+            return p.ToSelectQueryByObject<T>(1,1,false,isDeleted);
         }
+        public static QueryParams SelectCount<T>(dynamic dynamicObjects = null)
+        {
+            if(dynamicObjects is null)
+            {
+                return new QueryParams() { Parameters = null, Query = $"Select count(*) as Res from [{typeof(T).GetTableName()}]" };
+            }
+            var selectObject = BuildWhereQueryByObject<T>(dynamicObjects);
 
-        public static QueryParams ToSelectQueryByKeyValues<T>(this Dictionary<string, string> keyValues) 
+            return new QueryParams() { Parameters = selectObject.Parameters, Query = $"select count(*) as Res from [{typeof(T).GetTableName()}] {selectObject.Query}" };
+        }
+        public static QueryParams ToSelectQueryByKeyValues<T>(this Dictionary<string, string> keyValues,int isDeleted=0) 
         {
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.AppendLine(BuildSelectQuery<T>());
-            var sqlWhere = keyValues.BuildWhereQueryByKeyValues<T>();
+            var sqlWhere = keyValues.BuildWhereQueryByKeyValues<T>(isDeleted);
             queryBuilder.Append(sqlWhere.Query);
             queryBuilder.Append(keyValues.ToOrderQry<T>());
             queryBuilder.Append(keyValues.ToPagination());
@@ -54,7 +64,7 @@ namespace COMMON.BUILDER
             queryBuilder.Replace("[COLUMNS]", String.Join(",", typeof(T).GetDatabaseColumns()));
             return queryBuilder.ToString(); 
         }
-        public static QueryParams BuildWhereQueryByKeyValues<T>(this Dictionary<string,string> keyValues)
+        public static QueryParams BuildWhereQueryByKeyValues<T>(this Dictionary<string,string> keyValues, int isDeleted = 0)
         {
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.AppendLine(" where 1=1");
@@ -145,18 +155,18 @@ namespace COMMON.BUILDER
 
             if (typeof(T).CheckIsSoft())
             {
-                queryBuilder.AppendLine($"and {QueryHelper.SoftDeleteQuery<T>()}");
+                queryBuilder.AppendLine($"and {QueryHelper.SoftDeleteQuery<T>(isDeleted)}");
             }
             return new QueryParams() { Parameters = whereProps , Query= queryBuilder.ToString() };
         }
 
 
-        public static QueryParams ToSelectQueryByObject<T>(this object dynamicObject , int page =1 , int pageSize = 10,bool getAll=false) 
+        public static QueryParams ToSelectQueryByObject<T>(this object dynamicObject , int page =1 , int pageSize = 10,bool getAll=false,int isDeleted=0) 
         {
             StringBuilder queryBuilder = new StringBuilder();
 
             queryBuilder.AppendLine(BuildSelectQuery<T>());
-            var whereQry = BuildWhereQueryByObject<T>(dynamicObject);
+            var whereQry = BuildWhereQueryByObject<T>(dynamicObject,isDeleted);
             queryBuilder.AppendLine(whereQry.Query);
             if (!getAll)
             {
@@ -167,12 +177,16 @@ namespace COMMON.BUILDER
             return new QueryParams() { Query = queryBuilder.ToString() , Parameters = dynamicObject};
         }
 
-        public static QueryParams BuildWhereQueryByObject<T>(dynamic dynamicObject)
+        public static QueryParams BuildWhereQueryByObject<T>(dynamic dynamicObject, int isDeleted = 0)
         {
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.AppendLine("where 1=1");
             ExpandoObject p = new ExpandoObject();
-            foreach (var prop in dynamicObject as ExpandoObject)
+            string jsonString = JsonConvert.SerializeObject(dynamicObject);
+
+            var dynamicInfo = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
+
+            foreach (var prop in dynamicInfo)
             {
                 var propEntity = prop.Key.GetProperty<T>();
                 if (propEntity is not null)
@@ -190,18 +204,18 @@ namespace COMMON.BUILDER
             }
             if (typeof(T).CheckIsSoft())
             {
-                queryBuilder.AppendLine($"and {QueryHelper.SoftDeleteQuery<T>()}");
+                queryBuilder.AppendLine($"and {QueryHelper.SoftDeleteQuery<T>(isDeleted)}");
             }
 
             return new QueryParams() { Parameters = p, Query = queryBuilder.ToString() };
         }
-        public static QueryParams BuildWhereQueryByString<T>(this string whereQry,dynamic props = null, int page = 1, int pageSize = 10, bool getAll = false)
+        public static QueryParams BuildWhereQueryByString<T>(this string whereQry,dynamic props = null, int page = 1, int pageSize = 10, bool getAll = false , int isDeleted=0)
         {
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.AppendLine(whereQry);
             if (typeof(T).CheckIsSoft())
             {
-                queryBuilder.AppendLine($"and {QueryHelper.SoftDeleteQuery<T>()}");
+                queryBuilder.AppendLine($"and {QueryHelper.SoftDeleteQuery<T>(isDeleted)}");
             }
             if (!getAll)
             {
@@ -283,7 +297,7 @@ namespace COMMON.BUILDER
                         continue;
                 }
                 var value = prop.GetValue(entity);
-                p.TryAdd(prop.Name, Convert.ChangeType(value,prop.PropertyType));
+                p.TryAdd(prop.Name,value);
                 columnToInsert.Add(prop.GetColumnName());
                 propsToInsert.Add($"@{prop.Name}");
 
@@ -291,7 +305,7 @@ namespace COMMON.BUILDER
 
             queryBuilder.Append($"({String.Join(',',columnToInsert)})");
             queryBuilder.Append($" Values ({String.Join(',',propsToInsert)});");
-            queryBuilder.Append($"Select SCOPE_IDENTITY()");
+            queryBuilder.Append($"Select SCOPE_IDENTITY() as Res");
             return new QueryParams() { Parameters = p , Query = queryBuilder.ToString() };
         }
 

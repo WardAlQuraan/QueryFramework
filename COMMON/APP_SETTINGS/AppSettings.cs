@@ -10,5 +10,6 @@ namespace COMMON.APP_SETTINGS
     public class AppSettings
     {
         public ConnectionInfo ConnectionInfo { get; set; }
+        public JWT JWT { get; set; }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using COMMON;
 using COMMON.BUILDER;
+using COMMON.HELPER;
+using COMMON.PAGED;
+using COMMON.QUERY_OBJECTS;
 using CONNECTION_FACTORY.DAL_SESSION;
 using Dapper;
 using Microsoft.AspNetCore.Http;
@@ -11,58 +14,23 @@ using System.Threading.Tasks;
 
 namespace BASES.BASE_REPO
 {
-    public class BaseRepo<T> 
+    public class BaseRepo<T,I> 
     {
         protected IDalSession DalSession;
-        public int Timeout = GlobalApp.AppSettings.ConnectionInfo.Timeout;
+        public Repository Generic;
         public BaseRepo(IDalSession dalSession)
         {
             DalSession = dalSession;
+            Generic = new Repository(DalSession);
         }
 
-        public async Task<IEnumerable<T>> GetAsync(IQueryCollection keyValuePairs)
-        {
-
-            var selectObject = keyValuePairs.ToDictionary(x => x.Key, x => x.Value.ToString()).ToSelectQueryByKeyValues<T>();
-            var result = await DalSession.Connection().QueryAsync<T>(selectObject.Query, selectObject.Parameters, DalSession.Tasnsaction(), Timeout);
-            return result;
-        }
-
-        public async Task<T> GetAsync(object id)
-        {
-
-            var selectObject = QueryBuilder.ToSelectQueryById<T>(id);
-            var result = await DalSession.Connection().QueryFirstAsync<T>(selectObject.Query, selectObject.Parameters, DalSession.Tasnsaction(), Timeout);
-            return result;
-        }
-
-        public async Task<object> InsertAsync(T entity)
-        {
-            var insertQry = entity.InsertQuery();
-            var result = await DalSession.Connection().QueryFirstAsync<int>(insertQry.Query, insertQry.Parameters, DalSession.Tasnsaction(), Timeout);
-            return result;
-        }
-
-        public async Task<T> UpdateAsync(T entity)
-        {
-            var updateQry = entity.UpdateQuery();
-            var result = await DalSession.Connection().QueryFirstAsync<T>(updateQry.Query, updateQry.Parameters, DalSession.Tasnsaction(), Timeout);
-            return result;
-        }
-
-        public async Task<object> DeleteByIdAsync(object id)
-        {
-            var deleteQry = QueryBuilder.DeleteByIdQuery<T>(id);
-            var result = await DalSession.Connection().ExecuteAsync(deleteQry.Query, deleteQry.Parameters, DalSession.Tasnsaction(), Timeout);
-            return id;
-        }
-
-        public async Task<int> DeleteByQueryAsync(IQueryCollection keyValuePairs)
-        {
-
-            var selectObject = keyValuePairs.ToDictionary(x => x.Key, x => x.Value.ToString()).DeleteByQuery<T>();
-            var result = await DalSession.Connection().ExecuteAsync(selectObject.Query, selectObject.Parameters, DalSession.Tasnsaction(), Timeout);
-            return result;
-        }
+        public async Task<PagedResult<T>> GetAsync(IQueryCollection keyValuePairs , int isDeleted = 0) => await Generic.GetAsync<T>(keyValuePairs,isDeleted);
+        public async Task<T> GetAsync(object id , int isDeleted = 0) => await Generic.GetAsync<T>(id,isDeleted);
+        public async Task<IEnumerable<T>> GetListByCondition(dynamic dynamicObjects, int page = 1, int pageSize = 10, bool getAll = false, int isDeleted = 0) => await Generic.GetListByCondition<T>(dynamicObjects, page, pageSize, getAll, isDeleted);
+        public async Task<T?> GetByCondition(dynamic dynamicObjects, int page = 1, int pageSize = 10, bool getAll = false, int isDeleted = 0) => await Generic.GetByCondition<T>(dynamicObjects,page, pageSize, getAll, isDeleted);
+        public async Task<I> InsertAsync(T entity) => await Generic.InsertAsync<T,I>(entity);
+        public async Task<T> UpdateAsync(T entity) => await Generic.UpdateAsync<T>(entity);
+        public async Task<object> DeleteByIdAsync(object id) => await Generic.DeleteByIdAsync<T>(id);
+        public async Task<int> DeleteByQueryAsync(IQueryCollection keyValuePairs) => await Generic.DeleteByQueryAsync<T>(keyValuePairs);
     }
 }

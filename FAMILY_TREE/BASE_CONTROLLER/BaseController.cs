@@ -6,104 +6,56 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FAMILY_TREE.BASE_CONTROLLER
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class BaseController<T> : ControllerBase
+    public class BaseController<T,I> : StatusMessagesController
     {
-        private readonly IBaseService<T> _service;
-        public BaseController(IBaseService<T> baseService)
+        private readonly IBaseService<T,I> _service;
+        public BaseController(IBaseService<T, I> baseService)
         {
             _service = baseService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public virtual async Task<IActionResult> Get()
         {
-            try
-            {
-                var res = await _service.GetAsync(Request.Query);
-                return Ok(res);
+            
+            var res = await _service.GetAsync(Request.Query);
+            return Ok(res);
 
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public virtual async Task<IActionResult> Get(int id)
         {
-            try
-            {
-                var res = await _service.GetAsync(id);
-                return Ok(res);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var res = await _service.GetAsync(id);
+            return Ok(res);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(T entity)
+        public virtual async Task<IActionResult> Post(T entity)
         {
-            try
-            {
-                var res = await _service.InsertAsync(entity);
-                return Ok(res);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var res = await _service.InsertAsync(entity);
+            return Ok(res);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(T entity)
+        public virtual async Task<IActionResult> Put(T entity)
         {
-            try
-            {
-                var res = await _service.UpdateAsync(entity);
-                return Ok(res);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var res = await _service.UpdateAsync(entity);
+            return Ok(res);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public virtual async Task<IActionResult> Delete(int id)
         {
-            try
-            {
-                var res = await _service.DeleteByIdAsync(id);
-                return Ok(res);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var res = await _service.DeleteByIdAsync(id);
+            return Ok(res);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteByQuery()
+        public virtual async Task<IActionResult> Delete()
         {
-            try
-            {
-                var res = await _service.DeleteByQueryAsync(Request.Query);
-                return Ok(res);
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var res = await _service.DeleteByQueryAsync(Request.Query);
+            return Ok(res);
         }
     }
 }

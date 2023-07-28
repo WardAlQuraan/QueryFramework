@@ -52,3 +52,11 @@ C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debu
 C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\SERVICES.dll
 C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\SERVICES.pdb
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\w.alquraan\Desktop\QueryFramework\ConsoleFramework\FAMILY_TREE\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll

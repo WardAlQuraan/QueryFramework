@@ -1,5 +1,6 @@
 ﻿using BASES.BASE_REPO;
 using COMMON.BUILDER;
+using COMMON.PAGED;
 using CONNECTION_FACTORY.DAL_SESSION;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -10,37 +11,37 @@ using System.Threading.Tasks;
 
 namespace BASES.BASE_SERVICE
 {
-    public class BaseService<T>:IBaseService<T>
+    public class BaseService<T,I>:IBaseService<T,I>
     {
         protected IDalSession dalSession;
-        protected BaseRepo<T> _repo;
+        protected BaseRepo<T,I> _repo;
         public BaseService(IDalSession dalSession) 
         { 
             this.dalSession = dalSession; 
         }
 
-        public async Task<IEnumerable<T>> GetAsync(IQueryCollection keyValuePairs)
+        public virtual  async Task<PagedResult<T>> GetAsync(IQueryCollection keyValuePairs)
         {
             dalSession.Begin();
-            _repo = new BaseRepo<T>(dalSession);
+            _repo = new BaseRepo<T, I>(dalSession);
             var res = await _repo.GetAsync(keyValuePairs);
             return res;
         }
 
-        public async Task<T> GetAsync(object id)
+        public virtual  async Task<T> GetAsync(object id)
         {
             dalSession.Begin();
-            _repo = new BaseRepo<T>(dalSession);
+            _repo = new BaseRepo<T, I>(dalSession);
             var res = await _repo.GetAsync(id);
             return res;
         }
 
-        public async Task<object> InsertAsync(T entity)
+        public virtual async Task<I> InsertAsync(T entity)
         {
             try
             {
                 dalSession.Begin();
-                var repo = new BaseRepo<T>(dalSession);
+                var repo = new BaseRepo<T,I>(dalSession);
                 var res = await repo.InsertAsync(entity);
                 dalSession.Commit();
                 return res;
@@ -52,12 +53,12 @@ namespace BASES.BASE_SERVICE
             }
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual  async Task<T> UpdateAsync(T entity)
         {
             try
             {
                 dalSession.Begin();
-                var repo = new BaseRepo<T>(dalSession);
+                var repo = new BaseRepo<T, I>(dalSession);
                 var res = await repo.UpdateAsync(entity);
                 dalSession.Commit();
                 return res;
@@ -69,12 +70,12 @@ namespace BASES.BASE_SERVICE
             }
         }
 
-        public async Task<object> DeleteByIdAsync(object id)
+        public virtual  async Task<object> DeleteByIdAsync(object id)
         {
             try
             {
                 dalSession.Begin();
-                var repo = new BaseRepo<T>(dalSession);
+                var repo = new BaseRepo<T, I>(dalSession);
                 var res = await repo.DeleteByIdAsync(id);
                 dalSession.Commit();
                 return res;
@@ -86,13 +87,13 @@ namespace BASES.BASE_SERVICE
             }
         }
 
-        public async Task<int> DeleteByQueryAsync(IQueryCollection keyValuePairs)
+        public virtual  async Task<int> DeleteByQueryAsync(IQueryCollection keyValuePairs)
         {
 
             try
             {
                 dalSession.Begin();
-                var repo = new BaseRepo<T>(dalSession);
+                var repo = new BaseRepo<T, I>(dalSession);
                 var res = await repo.DeleteByQueryAsync(keyValuePairs);
                 dalSession.Commit();
                 return res;
